@@ -1,0 +1,53 @@
+flowchart TD
+    subgraph Customer [End-Customer B2C Journey]
+        C_Start([Visit Website]) --> C_Home[View Home Page]
+        C_Home --> C_Blog[Browse Blog & FAQ]
+        C_Home --> C_Search[Search via Widget]
+        C_Search --> C_List[Vehicle Listing Page]
+        C_List -->|Click Details| C_Detail[Vehicle Detail Page]
+        
+        C_Detail --> C_Select[Select Package, Quantity, Date]
+        C_Select --> C_Click[Click 'Booking via Whatsapp']
+        
+        C_Success([Redirect to wa.me with pre-filled message])
+        C_Error([Show Error & Prompt Retry])
+    end
+
+    subgraph Backend [Laravel API & System]
+        S_Load[Fetch Dynamic Brand Theme & Content]
+        S_Save[API: Save Lead to Database]
+        S_Check{Save Successful?}
+    end
+
+    subgraph Admin [Business Owner Admin Journey]
+        A_Start([Access Admin URL]) --> A_Login[Login Screen]
+        A_Login --> A_Auth{Valid Credentials?}
+        A_Auth -- No --> A_Login
+        A_Auth -- Yes --> A_Dash[Admin Dashboard]
+        
+        ADash_Select{Choose Action}
+        A_Dash --> ADash_Select
+        
+        ADash_Select --> A_Settings[White-Label Settings]
+        ADash_Select --> A_Fleet[Fleet Management]
+        ADash_Select --> A_Leads[Lead Management]
+        ADash_Select --> A_CMS[CMS Management]
+        
+        A_Settings --> A_Brand[Update Logo, Colors, Company Info]
+        A_Fleet --> A_CRUD[Add/Edit Vehicles, Dynamic Pricing, Availability]
+        A_Leads --> A_Status[Update Lead Status: Completed/Canceled]
+        A_CMS --> A_Content[Publish Blogs & FAQs]
+    end
+
+    %% Connections
+    C_Start -.->|App Initial Load| S_Load
+    S_Load -.-> C_Home
+    
+    C_Click -->|POST Request| S_Save
+    S_Save --> S_Check
+    S_Check -- Yes --> C_Success
+    S_Check -- No --> C_Error
+
+    A_Brand -.->|Updates Frontend| S_Load
+    A_CRUD -.->|Updates Frontend| C_List
+    S_Save -.->|Populates Dashboard| A_Leads
