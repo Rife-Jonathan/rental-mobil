@@ -3,16 +3,16 @@ FROM node:20-alpine AS frontend-build
 
 WORKDIR /app
 
-COPY ../package.json ../package-lock.json* ./
+COPY package.json package-lock.json* ./
 RUN npm install
 
-COPY ../src/ ./src/
-COPY ../index.html ./
-COPY ../vite.config.ts ./
-COPY ../tsconfig.json* ./
-COPY ../tsconfig.app.json* ./
-COPY ../tailwind.config.* ./
-COPY ../postcss.config.* ./
+COPY src/ ./src/
+COPY index.html ./
+COPY vite.config.ts ./
+COPY tsconfig.json* ./
+COPY tsconfig.app.json* ./
+COPY tailwind.config.* ./
+COPY postcss.config.* ./
 
 RUN npm run build
 
@@ -23,11 +23,11 @@ USER root
 
 WORKDIR /var/www/html
 
-COPY composer.json composer.lock ./
+COPY rental-mobil-backend/composer.json rental-mobil-backend/composer.lock ./
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
 
-COPY . .
+COPY rental-mobil-backend/ .
 
 # Copy built frontend assets from Stage 1
 COPY --from=frontend-build /app/rental-mobil-backend/public/ /var/www/html/public/
