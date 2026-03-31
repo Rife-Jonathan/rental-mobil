@@ -12,37 +12,37 @@ export const mockSettings: AppSettings = {
         accent: '#f59e0b', // amber-500
     },
     seo: {
-        title: 'RentFlow | Premium Vehicle Rental in Jakarta',
-        description: 'Rent premium SUVs, MPVs and Sedans with or without a driver for the best rates. Direct WhatsApp booking.'
+        title: 'RentFlow | Sewa Kendaraan Premium di Jakarta',
+        description: 'Sewa SUV, MPV, dan Sedan premium dengan atau tanpa sopir dengan harga terbaik. Pemesanan langsung melalui WhatsApp.'
     },
     landingPage: {
-        heroTitle: 'Drive Your Dreams Today',
-        heroSubtitle: 'Premium vehicle rentals with seamless direct-to-WhatsApp booking.',
-        benefitTitle: 'Benefit Point',
-        benefitSubtitle: 'Why thousands of customers trust us for their rental needs.',
+        heroTitle: 'Wujudkan Perjalanan Impian Anda',
+        heroSubtitle: 'Sewa kendaraan premium dengan pemesanan langsung melalui WhatsApp.',
+        benefitTitle: 'Keunggulan Kami',
+        benefitSubtitle: 'Mengapa ribuan pelanggan mempercayakan kebutuhan sewa kendaraan mereka kepada kami.',
         benefits: [
-            { title: 'Premium & Safe Fleet', description: 'All our vehicles undergo strict quality controls and routine maintenance to ensure your ultimate safety and comfort.', icon: 'ShieldCheck' as 'ShieldCheck' },
-            { title: '24/7 Roadside Assistance', description: 'Drive with peace of mind knowing our dedicated support team is available round the clock wherever you are.', icon: 'Clock' as 'Clock' },
-            { title: 'Transparent Pricing', description: 'No hidden fees or surprise charges. We provide straightforward, competitive rates for every rental package.', icon: 'CreditCard' as 'CreditCard' }
+            { title: 'Armada Premium & Aman', description: 'Seluruh kendaraan kami menjalani kontrol kualitas ketat dan perawatan rutin untuk memastikan keselamatan serta kenyamanan Anda.', icon: 'ShieldCheck' as 'ShieldCheck' },
+            { title: 'Layanan Darurat 24/7', description: 'Berkendara dengan tenang karena tim support kami siap membantu kapan saja dan di mana saja Anda berada.', icon: 'Clock' as 'Clock' },
+            { title: 'Harga Transparan', description: 'Tanpa biaya tersembunyi atau biaya tambahan. Kami memberikan harga yang jelas dan kompetitif untuk setiap paket sewa.', icon: 'CreditCard' as 'CreditCard' }
         ],
-        fleetTitle: 'Our Popular Fleet',
-        fleetSubtitle: 'Choose from our wide range of premium vehicles maintained to the highest standards.',
-        faqTitle: 'Frequently Asked Questions',
+        fleetTitle: 'Armada Populer Kami',
+        fleetSubtitle: 'Pilih dari berbagai kendaraan premium kami yang dirawat dengan standar tertinggi.',
+        faqTitle: 'Pertanyaan yang Sering Diajukan',
         faqs: [
-            { question: 'What are the requirements to rent a car?', answer: 'You must have a valid drivers license (SIM A), KTP, and be at least 21 years old.' },
-            { question: 'Is insurance included in the rental price?', answer: 'Basic insurance is included. Comprehensive coverage is available for an additional fee.' },
-            { question: 'Can I change my booking dates?', answer: 'Yes, modifications are allowed up to 48 hours before the rental period begins.' },
-            { question: 'Do you offer airport pickup/drop-off?', answer: 'Absolutely! Please select the airport transfer add-on during booking.' }
+            { question: 'Apa saja syarat untuk menyewa kendaraan?', answer: 'Anda harus memiliki SIM A yang berlaku, KTP, dan berusia minimal 21 tahun.' },
+            { question: 'Apakah asuransi sudah termasuk dalam harga sewa?', answer: 'Asuransi dasar sudah termasuk. Perlindungan menyeluruh tersedia dengan biaya tambahan.' },
+            { question: 'Apakah saya bisa mengubah tanggal pemesanan?', answer: 'Ya, perubahan diperbolehkan hingga 48 jam sebelum masa sewa dimulai.' },
+            { question: 'Apakah tersedia layanan antar-jemput bandara?', answer: 'Tentu saja! Silakan pilih layanan bandara saat melakukan pemesanan.' }
         ],
-        blogTitle: 'Latest Insights',
-        blogSubtitle: 'Tips, news, and guides for your journey.',
-        footerDescription: 'Modernizing fleet rentals with seamless direct-to-WhatsApp booking.',
+        blogTitle: 'Artikel Terbaru',
+        blogSubtitle: 'Tips, berita, dan panduan untuk perjalanan Anda.',
+        footerDescription: 'Memodernisasi layanan sewa kendaraan dengan pemesanan langsung melalui WhatsApp.',
         bookingNotice: 'Jangan lewatkan penawaran spesial kami! Harga di atas dapat berubah sewaktu-waktu tanpa pemberitahuan sebelumnya. Segera hubungi kami atau pesan langsung untuk mendapatkan harga terbaik!'
     },
     aboutPage: {
-        heroSubtitle: 'We are dedicated to providing the best mobility solutions for your personal and corporate needs.',
-        content1: 'RentFlow was founded with a single mission: to modernize fleet rentals with seamless direct-to-WhatsApp booking. We understand that traditional e-commerce checkout flows can be cumbersome when you just need a car quickly.',
-        content2: 'We maintain a premium fleet of SUVs, MPVs, and Sedans that are regularly serviced and thoroughly cleaned before every journey. Whether you need a car with a professional driver for a business meeting, or prefer self-drive (Lepas Kunci) for a family vacation, we have the right package for you.'
+        heroSubtitle: 'Kami berkomitmen memberikan solusi mobilitas terbaik untuk kebutuhan pribadi dan bisnis Anda.',
+        content1: 'RentFlow didirikan dengan satu misi: memodernisasi layanan sewa kendaraan dengan pemesanan langsung melalui WhatsApp. Kami memahami bahwa alur checkout e-commerce tradisional bisa merepotkan ketika Anda hanya butuh kendaraan dengan cepat.',
+        content2: 'Kami menjaga armada premium berupa SUV, MPV, dan Sedan yang selalu diservis dan dibersihkan menyeluruh sebelum setiap perjalanan. Baik Anda butuh kendaraan dengan sopir profesional untuk pertemuan bisnis, atau lebih suka lepas kunci untuk liburan keluarga, kami memiliki paket yang tepat untuk Anda.'
     }
 };
 
