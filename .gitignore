@@ -24,18 +24,18 @@ dist-ssr
 *.sw?
 
 # Backend (Laravel)
-backend/vendor/
-backend/node_modules/
-backend/public/build/
-backend/public/hot
-backend/public/storage
-backend/storage/*.key
-backend/.env
-backend/.env.backup
-backend/.env.production
-backend/.phpunit.result.cache
-backend/Homestead.json
-backend/Homestead.yaml
-backend/npm-debug.log
-backend/yarn-error.log
-backend/.pnpm-debug.log
+rental-mobil-backend/vendor/
+rental-mobil-backend/node_modules/
+rental-mobil-backend/public/build/
+rental-mobil-backend/public/hot
+rental-mobil-backend/public/storage
+rental-mobil-backend/storage/*.key
+rental-mobil-backend/.env
+rental-mobil-backend/.env.backup
+rental-mobil-backend/.env.production
+rental-mobil-backend/.phpunit.result.cache
+rental-mobil-backend/Homestead.json
+rental-mobil-backend/Homestead.yaml
+rental-mobil-backend/npm-debug.log
+rental-mobil-backend/yarn-error.log
+rental-mobil-backend/.pnpm-debug.log

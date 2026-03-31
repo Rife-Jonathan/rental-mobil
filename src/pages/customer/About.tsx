@@ -9,20 +9,17 @@ export default function About() {
             {/* Hero */}
             <div className="bg-secondary py-20 text-center text-white">
                 <h1 className="text-4xl font-bold mb-4">About {settings.companyName}</h1>
-                <p className="text-lg text-gray-300 max-w-2xl mx-auto px-4">We are dedicated to providing the best mobility solutions for your personal and corporate needs.</p>
+                <p className="text-lg text-gray-300 max-w-2xl mx-auto px-4">{settings.aboutPage?.heroSubtitle || 'We are dedicated to providing the best mobility solutions for your personal and corporate needs.'}</p>
             </div>
 
             {/* Content */}
             <div className="max-w-4xl mx-auto px-4 py-16">
                 <div className="prose prose-lg text-gray-600 mb-16">
-                    <p>
-                        {settings.companyName} was founded with a single mission: to modernize fleet rentals with seamless direct-to-WhatsApp booking.
-                        We understand that traditional e-commerce checkout flows can be cumbersome when you just need a car quickly.
+                    <p className="whitespace-pre-line">
+                        {settings.aboutPage?.content1 || `${settings.companyName} was founded with a single mission: to modernize fleet rentals with seamless direct-to-WhatsApp booking. We understand that traditional e-commerce checkout flows can be cumbersome when you just need a car quickly.`}
                     </p>
-                    <p>
-                        We maintain a premium fleet of SUVs, MPVs, and Sedans that are regularly serviced and thoroughly cleaned
-                        before every journey. Whether you need a car with a professional driver for a business meeting, or
-                        prefer self-drive (Lepas Kunci) for a family vacation, we have the right package for you.
+                    <p className="whitespace-pre-line">
+                        {settings.aboutPage?.content2 || `We maintain a premium fleet of SUVs, MPVs, and Sedans that are regularly serviced and thoroughly cleaned before every journey. Whether you need a car with a professional driver for a business meeting, or prefer self-drive (Lepas Kunci) for a family vacation, we have the right package for you.`}
                     </p>
                 </div>
 

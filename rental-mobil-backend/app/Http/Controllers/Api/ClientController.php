@@ -43,6 +43,11 @@ class ClientController extends Controller
                     'blogTitle' => 'Latest Insights',
                     'blogSubtitle' => 'Tips, news, and guides for your journey.',
                     'footerDescription' => 'Modernizing fleet rentals with seamless direct-to-WhatsApp booking.'
+                ],
+                'aboutPage' => [
+                    'heroSubtitle' => 'We are dedicated to providing the best mobility solutions for your personal and corporate needs.',
+                    'content1' => 'RentFlow was founded with a single mission: to modernize fleet rentals with seamless direct-to-WhatsApp booking. We understand that traditional e-commerce checkout flows can be cumbersome when you just need a car quickly.',
+                    'content2' => 'We maintain a premium fleet of SUVs, MPVs, and Sedans that are regularly serviced and thoroughly cleaned before every journey. Whether you need a car with a professional driver for a business meeting, or prefer self-drive (Lepas Kunci) for a family vacation, we have the right package for you.'
                 ]
             ]);
         }
@@ -78,6 +83,11 @@ class ClientController extends Controller
                 'blogSubtitle' => 'Tips, news, and guides for your journey.',
                 'footerDescription' => 'Modernizing fleet rentals with seamless direct-to-WhatsApp booking.',
                 'bookingNotice' => 'Jangan lewatkan penawaran spesial kami! Harga di atas dapat berubah sewaktu-waktu tanpa pemberitahuan sebelumnya. Segera hubungi kami atau pesan langsung untuk mendapatkan harga terbaik!'
+            ],
+            'aboutPage' => $settings->about_page ?: [
+                'heroSubtitle' => 'We are dedicated to providing the best mobility solutions for your personal and corporate needs.',
+                'content1' => 'RentFlow was founded with a single mission: to modernize fleet rentals with seamless direct-to-WhatsApp booking. We understand that traditional e-commerce checkout flows can be cumbersome when you just need a car quickly.',
+                'content2' => 'We maintain a premium fleet of SUVs, MPVs, and Sedans that are regularly serviced and thoroughly cleaned before every journey. Whether you need a car with a professional driver for a business meeting, or prefer self-drive (Lepas Kunci) for a family vacation, we have the right package for you.'
             ]
         ]);
     }

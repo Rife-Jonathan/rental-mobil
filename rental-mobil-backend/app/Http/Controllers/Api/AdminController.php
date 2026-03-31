@@ -44,6 +44,19 @@ class AdminController extends Controller
         ]);
     }
 
+    public function uploadImage(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image|max:10240' // max 10MB
+        ]);
+
+        $path = $request->file('image')->store('uploads', 'public');
+        return response()->json([
+            'success' => true,
+            'url' => asset('storage/' . $path)
+        ]);
+    }
+
     public function getVehicles()
     {
         $vehicles = Vehicle::with('pricingPackages')->orderBy('created_at', 'desc')->get();
@@ -120,6 +133,7 @@ class AdminController extends Controller
             'colors' => 'required|array',
             'seo' => 'required|array',
             'landingPage' => 'required|array',
+            'aboutPage' => 'required|array',
         ]);
 
         $settings = Setting::first();
@@ -135,6 +149,7 @@ class AdminController extends Controller
         $settings->colors = $validated['colors'];
         $settings->seo = $validated['seo'];
         $settings->landing_page = $validated['landingPage'];
+        $settings->about_page = $validated['aboutPage'];
         $settings->save();
 
         return response()->json(['success' => true]);

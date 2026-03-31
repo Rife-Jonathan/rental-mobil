@@ -15,5 +15,6 @@ class Setting extends Model
         'colors' => 'array',
         'seo' => 'array',
         'landing_page' => 'array',
+        'about_page' => 'array',
     ];
 }

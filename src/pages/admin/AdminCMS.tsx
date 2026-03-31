@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
-import { fetchBlogs, deleteBlog, createBlog } from '../../services/api';
-import { Edit, Trash2, Plus, Loader2, X } from 'lucide-react';
+import { fetchBlogs, deleteBlog, createBlog, uploadImage } from '../../services/api';
+import { Edit, Trash2, Plus, Loader2, X, Upload } from 'lucide-react';
 
 export default function AdminCMS() {
     const [blogs, setBlogs] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isUploading, setIsUploading] = useState(false);
     const [newBlog, setNewBlog] = useState({
         title: '',
         excerpt: '',
@@ -130,8 +131,29 @@ export default function AdminCMS() {
                                 <textarea required value={newBlog.content} onChange={e => setNewBlog({ ...newBlog, content: e.target.value })} className="w-full border border-gray-300 rounded-lg p-2 focus:ring-primary outline-none h-32"></textarea>
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">Thumbnail URL</label>
-                                <input required type="text" value={newBlog.thumbnail} onChange={e => setNewBlog({ ...newBlog, thumbnail: e.target.value })} className="w-full border border-gray-300 rounded-lg p-2 focus:ring-primary outline-none" />
+                                <label className="block text-sm font-medium text-gray-700 mb-1 flex justify-between">
+                                    <span>Thumbnail URL</span>
+                                    {isUploading && <span className="text-primary text-xs flex items-center gap-1"><Loader2 size={12} className="animate-spin" /> Uploading...</span>}
+                                </label>
+                                <div className="flex gap-2 mb-2">
+                                    <label className="bg-gray-100 hover:bg-gray-200 border border-gray-300 text-gray-700 rounded-lg px-3 py-2 cursor-pointer flex items-center gap-2 transition-colors">
+                                        <Upload size={16} /> Upload File
+                                        <input type="file" accept="image/*" className="hidden" onChange={async (e) => {
+                                            if (e.target.files && e.target.files[0]) {
+                                                setIsUploading(true);
+                                                try {
+                                                    const res = await uploadImage(e.target.files[0]);
+                                                    setNewBlog({ ...newBlog, thumbnail: res.url });
+                                                } catch (err) {
+                                                    alert('Image upload failed');
+                                                } finally {
+                                                    setIsUploading(false);
+                                                }
+                                            }
+                                        }} />
+                                    </label>
+                                    <input required type="text" value={newBlog.thumbnail} onChange={e => setNewBlog({ ...newBlog, thumbnail: e.target.value })} className="flex-1 w-full border border-gray-300 rounded-lg p-2 focus:ring-primary outline-none" />
+                                </div>
                             </div>
                             <div className="pt-4 flex justify-end gap-3">
                                 <button type="button" onClick={() => setIsAddModalOpen(false)} className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg font-medium transition-colors">Cancel</button>

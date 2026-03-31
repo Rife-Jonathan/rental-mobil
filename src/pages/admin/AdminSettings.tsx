@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSettings } from '../../context/SettingsContext';
-import { updateSettingsAPI } from '../../services/api';
-import { Loader2, PlusCircle, Trash } from 'lucide-react';
+import { updateSettingsAPI, uploadImage } from '../../services/api';
+import { Loader2, PlusCircle, Trash, Upload } from 'lucide-react';
 
 export default function AdminSettings() {
     const { settings, updateSettings } = useSettings();
@@ -10,6 +10,8 @@ export default function AdminSettings() {
     const [formData, setFormData] = useState(settings);
     const [successMsg, setSuccessMsg] = useState('');
     const [isSaving, setIsSaving] = useState(false);
+    const [isUploadingLogo, setIsUploadingLogo] = useState(false);
+    const [isUploadingHero, setIsUploadingHero] = useState(false);
 
     const handleSave = async () => {
         setIsSaving(true);
@@ -63,13 +65,34 @@ export default function AdminSettings() {
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">Logo URL</label>
-                                <input
-                                    type="text"
-                                    value={formData.logoUrl}
-                                    onChange={e => setFormData({ ...formData, logoUrl: e.target.value })}
-                                    className="w-full border border-gray-300 rounded-lg p-2 focus:ring-primary outline-none"
-                                />
+                                <label className="block text-sm font-medium text-gray-700 mb-1 flex justify-between">
+                                    <span>Logo URL</span>
+                                    {isUploadingLogo && <span className="text-primary text-xs flex items-center gap-1"><Loader2 size={12} className="animate-spin" /></span>}
+                                </label>
+                                <div className="flex gap-2">
+                                    <label className="bg-gray-100 hover:bg-gray-200 border border-gray-300 text-gray-700 rounded-lg px-2 py-2 cursor-pointer transition-colors" title="Upload Logo">
+                                        <Upload size={16} />
+                                        <input type="file" accept="image/*" className="hidden" onChange={async (e) => {
+                                            if (e.target.files && e.target.files[0]) {
+                                                setIsUploadingLogo(true);
+                                                try {
+                                                    const res = await uploadImage(e.target.files[0]);
+                                                    setFormData({ ...formData, logoUrl: res.url });
+                                                } catch (err) {
+                                                    alert('Logo upload failed');
+                                                } finally {
+                                                    setIsUploadingLogo(false);
+                                                }
+                                            }
+                                        }} />
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={formData.logoUrl}
+                                        onChange={e => setFormData({ ...formData, logoUrl: e.target.value })}
+                                        className="flex-1 w-full border border-gray-300 rounded-lg p-2 focus:ring-primary outline-none"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -221,6 +244,37 @@ export default function AdminSettings() {
                                             value={formData.landingPage.heroSubtitle}
                                             onChange={e => setFormData({ ...formData, landingPage: { ...formData.landingPage, heroSubtitle: e.target.value } })}
                                             className="w-full border border-gray-300 rounded-lg p-2 focus:ring-primary outline-none"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="mt-4">
+                                    <label className="block text-xs font-medium text-gray-700 mb-1 flex justify-between">
+                                        <span>Hero Background Image URL</span>
+                                        {isUploadingHero && <span className="text-primary text-xs flex items-center gap-1"><Loader2 size={12} className="animate-spin" /></span>}
+                                    </label>
+                                    <div className="flex gap-2">
+                                        <label className="bg-gray-100 hover:bg-gray-200 border border-gray-300 text-gray-700 rounded-lg px-2 py-2 cursor-pointer transition-colors" title="Upload Hero Image">
+                                            <Upload size={16} />
+                                            <input type="file" accept="image/*" className="hidden" onChange={async (e) => {
+                                                if (e.target.files && e.target.files[0]) {
+                                                    setIsUploadingHero(true);
+                                                    try {
+                                                        const res = await uploadImage(e.target.files[0]);
+                                                        setFormData({ ...formData, landingPage: { ...formData.landingPage, heroImage: res.url } });
+                                                    } catch (err) {
+                                                        alert('Hero image upload failed');
+                                                    } finally {
+                                                        setIsUploadingHero(false);
+                                                    }
+                                                }
+                                            }} />
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={formData.landingPage.heroImage || ''}
+                                            onChange={e => setFormData({ ...formData, landingPage: { ...formData.landingPage, heroImage: e.target.value } })}
+                                            className="flex-1 w-full border border-gray-300 rounded-lg p-2 focus:ring-primary outline-none"
+                                            placeholder="https://... (or click to upload)"
                                         />
                                     </div>
                                 </div>

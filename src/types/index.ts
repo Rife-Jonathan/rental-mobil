@@ -14,6 +14,7 @@ export interface AppSettings {
         description: string;
     };
     landingPage: {
+        heroImage?: string;
         heroTitle: string;
         heroSubtitle: string;
         benefitTitle: string;
@@ -34,6 +35,11 @@ export interface AppSettings {
         blogSubtitle: string;
         footerDescription: string;
         bookingNotice: string;
+    };
+    aboutPage: {
+        heroSubtitle: string;
+        content1: string;
+        content2: string;
     };
 }
 

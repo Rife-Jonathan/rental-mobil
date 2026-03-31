@@ -1,6 +1,6 @@
 import { Outlet, Link } from 'react-router-dom';
 import { useSettings } from '../context/SettingsContext';
-import { LayoutDashboard, Settings, CarFront, MessageSquare, FileText, LogOut } from 'lucide-react';
+import { LayoutDashboard, Settings, CarFront, MessageSquare, FileText, LogOut, Info } from 'lucide-react';
 
 export default function AdminLayout() {
     const { settings } = useSettings();
@@ -27,6 +27,9 @@ export default function AdminLayout() {
                     </Link>
                     <Link to="/admin/cms" className="flex items-center gap-3 px-4 py-3 rounded hover:bg-gray-700 transition-colors">
                         <FileText size={20} /> CMS / Blog
+                    </Link>
+                    <Link to="/admin/about" className="flex items-center gap-3 px-4 py-3 rounded hover:bg-gray-700 transition-colors">
+                        <Info size={20} /> About Page Content
                     </Link>
                 </nav>
                 <div className="p-4 border-t border-gray-700">

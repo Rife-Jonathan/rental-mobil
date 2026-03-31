@@ -21,6 +21,7 @@ Route::post('/leads', [ClientController::class, 'storeLead']);
 // Admin API Endpoints
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard']);
+    Route::post('/upload', [AdminController::class, 'uploadImage']);
     
     Route::put('/settings', [AdminController::class, 'updateSettings']);
     

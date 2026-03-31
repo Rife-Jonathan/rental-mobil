@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
-import { fetchAllVehicles, deleteVehicle, updateVehicle, createVehicle } from '../../services/api';
-import { Edit, Trash2, Plus, Loader2, X, PlusCircle, Trash } from 'lucide-react';
+import { fetchAllVehicles, deleteVehicle, updateVehicle, createVehicle, uploadImage } from '../../services/api';
+import { Edit, Trash2, Plus, Loader2, X, PlusCircle, Trash, Upload } from 'lucide-react';
 
 export default function AdminFleet() {
     const [vehicles, setVehicles] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isUploading, setIsUploading] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
 
     // Default structure for new vehicle
@@ -189,8 +190,29 @@ export default function AdminFleet() {
                                         </select>
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
-                                        <input required type="text" value={formData.images[0]} onChange={e => setFormData({ ...formData, images: [e.target.value] })} className="w-full border border-gray-300 rounded-lg p-2 focus:ring-primary outline-none" />
+                                        <label className="block text-sm font-medium text-gray-700 mb-1 flex justify-between">
+                                            <span>Image URL</span>
+                                            {isUploading && <span className="text-primary text-xs flex items-center gap-1"><Loader2 size={12} className="animate-spin" /> Uploading...</span>}
+                                        </label>
+                                        <div className="flex gap-2">
+                                            <label className="bg-gray-100 hover:bg-gray-200 border border-gray-300 text-gray-700 rounded-lg px-3 py-2 cursor-pointer flex items-center justify-center transition-colors">
+                                                <Upload size={16} />
+                                                <input type="file" accept="image/*" className="hidden" onChange={async (e) => {
+                                                    if (e.target.files && e.target.files[0]) {
+                                                        setIsUploading(true);
+                                                        try {
+                                                            const res = await uploadImage(e.target.files[0]);
+                                                            setFormData({ ...formData, images: [res.url, ...formData.images.slice(1)] });
+                                                        } catch (err) {
+                                                            alert('Upload failed');
+                                                        } finally {
+                                                            setIsUploading(false);
+                                                        }
+                                                    }
+                                                }} />
+                                            </label>
+                                            <input required type="text" value={formData.images[0]} onChange={e => setFormData({ ...formData, images: [e.target.value] })} className="flex-1 w-full border border-gray-300 rounded-lg p-2 focus:ring-primary outline-none" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>

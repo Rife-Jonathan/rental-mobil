@@ -1,4 +1,4 @@
-export const API_BASE_URL = 'http://127.0.0.1:8000/api';
+export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://backend.test/api';
 
 export const fetchSettings = async () => {
     const res = await fetch(`${API_BASE_URL}/settings`);
@@ -54,6 +54,18 @@ export const submitLead = async (leadData: any) => {
 export const fetchDashboardStats = async () => {
     const res = await fetch(`${API_BASE_URL}/admin/dashboard`);
     if (!res.ok) throw new Error('Failed to fetch dashboard stats');
+    return res.json();
+};
+
+export const uploadImage = async (file: File) => {
+    const formData = new FormData();
+    formData.append('image', file);
+    const res = await fetch(`${API_BASE_URL}/admin/upload`, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+    });
+    if (!res.ok) throw new Error('Failed to upload image');
     return res.json();
 };
 

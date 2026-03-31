@@ -19,6 +19,7 @@ import AdminSettings from './pages/admin/AdminSettings';
 import AdminFleet from './pages/admin/AdminFleet';
 import AdminLeads from './pages/admin/AdminLeads';
 import AdminCMS from './pages/admin/AdminCMS';
+import AdminAbout from './pages/admin/AdminAbout';
 
 export default function App() {
     return (
@@ -42,6 +43,7 @@ export default function App() {
                         <Route path="fleet" element={<AdminFleet />} />
                         <Route path="leads" element={<AdminLeads />} />
                         <Route path="cms" element={<AdminCMS />} />
+                        <Route path="about" element={<AdminAbout />} />
                     </Route>
                 </Routes>
             </Router>
